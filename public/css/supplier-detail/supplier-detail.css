@@ -1,0 +1,249 @@
+body {
+  font-family: "Montserrat", sans-serif !important;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container-main {
+  display: grid;
+  grid-template-columns: repeat(2, 250px auto);
+}
+
+.container-main .container-left {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #000;
+}
+
+.container-main .container-left .ul-full {
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.container-main .container-left ul li.title {
+  position: relative;
+}
+
+.container-main .container-left ul li.title .alfas-badge {
+  padding-left: 1.5rem;
+  border-bottom: 0.1rem solid #ffd700;
+}
+
+.container-main .container-left ul li.title .charts-fill img {
+  width: 20px;
+  position: absolute;
+  right: 12px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.container-main .container-left ul li.title h2 {
+  font-size: 1em;
+  color: #000;
+  padding: 0.7rem 2.5rem 0.7rem 2.5rem;
+  background-color: #ffd700;
+  display: inline-block;
+  border-radius: 0.25rem;
+}
+
+.container-main .container-left ul li.nav-flex {
+  padding-left: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.container-main .container-left ul li.nav-flex img {
+  width: 20px;
+}
+
+.container-main .container-left ul li.nav-flex a {
+  font-weight: 300 !important;
+  color: #fff;
+  transition: 0.1s ease-out;
+}
+
+.container-main .container-left ul li.nav-flex .nav-hover:hover {
+  font-weight: 600 !important;
+  color: #0085ff;
+}
+
+.container-main .container-left ul li.nav-flex .nav-suppliers {
+  font-weight: 600 !important;
+  color: #0085ff;
+}
+
+.container-main .container-left ul li.nav-flex .active {
+  font-weight: 600 !important;
+  color: #0085ff;
+}
+
+.container-main .container-left ul li.abc a {
+  font-weight: 600 !important;
+  color: #ff0000;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #000;
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 300 !important;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  padding-left: 1.5rem;
+}
+
+.dropdown img {
+  width: 20px;
+}
+
+.dropdown button {
+  padding-left: .8rem;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: #FFF;
+  padding: .5rem 2.2rem;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {color: #0085FF;
+  font-weight: 600 !important;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block; background-color: #000;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  color: #0085FF;
+  font-weight: 600 !important;
+}
+
+.container-main .container-right {
+  width: 1100px;
+  height: 100%;
+  padding: 0;
+  position: relative;
+}
+
+.container-main .container-right .items {
+  margin: 1rem;
+}
+
+.container-main .container-right .items .title {
+  border-bottom: 0.1rem solid #ffd700;
+}
+
+.container-main .container-right .items .title h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.container-main .container-right .items .three-element {
+  display: grid;
+  grid-template-columns: repeat(3, 500px 300px 300px);
+  /*flex-direction: row;
+  justify-content: space-around;
+  align-items: center;*/
+  margin-bottom: 2rem; 
+}
+
+.container-main .container-right .items .three-element .btn-action a {
+  transition: .1s ease-out;
+}
+
+.container-main .container-right .items .three-element .btn-action a:hover, 
+.container-main .container-right .items .three-element .btn-action form button:hover
+{
+  opacity: .7;
+}
+
+.container-main .container-right .items .three-element .btn-action a:nth-child(1) {
+  background-color: #0085FF;
+  color: #FFF;
+  padding: .2rem 2rem;
+  margin: 1.2rem 1rem 1.2rem 0;
+}
+
+.container-main .container-right .items .three-element .btn-action a:nth-child(2) {
+  background-color: #0dcaf0;
+  color: #FFF;
+  padding: .2rem 2rem;
+  margin: 1.2rem 1rem 1.2rem 0;
+}
+
+.container-main .container-right .items .three-element .btn-action form {
+  display: inline-block;
+}
+
+.container-main .container-right .items .three-element .btn-action form button {
+  color: #FFF;
+  background-color: #FF0000;
+  padding: .2rem 2rem;
+}
+
+.container-main .container-right .items .three-element p {
+  font-weight: 600;
+  margin: auto 0;
+  color: #000;
+}
+
+.container-main .container-right .items .three-element p span {
+  font-weight: 700;
+  margin-left: 1rem;
+  color: #000;
+  background-color: #eaeaea;
+  padding: .5rem 4rem .5rem .6rem;
+  letter-spacing: .04rem
+}
+
+.container-main .container-right .items table a {
+  transition: .1s ease-out;
+}
+
+.container-main .container-right .items table a:hover,
+.container-main .container-right .items table form button:hover
+{
+  opacity: .7;
+}
+
+.container-main .container-right .items table a.btn:nth-child(1) {
+  margin: 0 .5rem 0 0;
+  background-color: #0085FF;
+  padding: .2rem .5rem;
+  color: #FFF;
+}
+
+.container-main .container-right .items table form {
+  display: inline-block;
+}
+
+.container-main .container-right .items table form button {
+  color: #FFF;
+  background-color: #FF0000;
+  padding: .2rem .5rem;
+}

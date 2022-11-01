@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="../../css/edit-sales/edit-sales.css" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title><%= title %></title>
+  </head>
+  <body>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Form Ubah Data Barang Yang Telah Terjual</h2>
+          <!-- cek variabel msg jika tidak ada isinya -->
+          <% if (msg.length !== 0) { %>
+          <div class="alert alert-success d-block mt-3" role="alert">
+            <p id="check"><%= msg %></p>
+          </div>
+          <% } %>
+          <form method="POST" action="/today-sales?_method=PUT" autocomplete="off" class="mb-3">
+            <!-- Ambil _id -->
+            <input type="hidden" name="_id" value="<%= new_today_sales._id %>" />
+            <div class="mb-3 wrapper">
+              <div class="search-input">
+                <a href="" target="_blank" hidden></a>
+                <label for="product_name" class="form-label">Nama Barang :</label>
+                <input type="text" placeholder="Ketik Nama Barang..." id="product_name" class="form-control class_product_name" name="product_name" class="form-control" autocomplete="off" value="<%= new_today_sales.product_name %>" autofocus required />
+                <div class="autocom-box">
+                  <!-- here list are inserted from javascript -->
+                </div>
+                <div class="icon"><i class="fas fa-search"></i></div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="category" class="form-label">Kategori :</label>
+              <input
+                type="text"
+                class="form-control class_category"
+                id="category"
+                name="category"
+                value="<%= new_today_sales.category %>"
+                required
+                readonly
+              />
+            </div>
+            <div class="mb-3">
+              <label for="harga_pokok" class="form-label">Modal :</label>
+              <input
+                type="Number"
+                class="form-control class_harga_pokok"
+                id="harga_pokok"
+                name="harga_pokok"
+                value="<%= new_today_sales.harga_pokok %>"
+                required
+                readonly
+              />
+            </div>
+            <div class="mb-3">
+              <label for="selling_price" class="form-label">Harga Satuan :</label>
+              <input
+                type="Number"
+                class="form-control class_selling_price"
+                id="selling_price"
+                name="selling_price"
+                value="<%= new_today_sales.selling_price %>"
+                onchange="calculateAmount(this)"
+                required
+                readonly
+              />
+            </div>
+            <div class="mb-3">
+              <label for="qty" class="form-label">Jumlah Beli :</label>
+              <input
+                type="Number"
+                class="form-control class_qty"
+                id="qty"
+                name="qty"
+                required
+                onchange="calculateAmount(this)"
+                value="<%= new_today_sales.qty %>"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="unit" class="form-label">Satuan Barang :</label>
+              <select name="unit" id="unit" class="form-select class_unit">
+              <option selected><%= new_today_sales.unit %></option>
+                <% units.forEach(unit => { %>
+                  <option><%= unit.unit %></option>
+                <% }) %>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="total_price" class="form-label">Total Bayar :</label>
+              <input
+                type="text"
+                class="form-control class_total_price"
+                id="total_price"
+                name="total_price"
+                required
+                readonly
+                value="<%= new_today_sales.total_price %>"
+              />
+            </div>
+            <a href="/today-sales" class="btn btn-danger">Batal</a>
+            <button type="submit" class="btn btn-success">
+              Simpan
+            </button>
+          </form>
+        </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function calculateAmount(val) {
+      const sellingPrice = document.getElementById('selling_price');
+      const qty = document.getElementById('qty');
+
+      let tot_price = selling_price.value * qty.value;
+      
+      /*display the result*/
+      let divobj = document.getElementById('total_price');
+      divobj.value = tot_price;
+    }
+
+    let autoFillValues = [];
+
+    <% for (let i = 0; i < stock_products.length; i++) { %> 
+      autoFillValues.push(
+        {
+          product_name: "<%= stock_products[i].product_name %>",
+          category: "<%= stock_products[i].category %>",
+          harga_pokok: "<%= stock_products[i].harga_pokok %>",
+          selling_price: "<%= stock_products[i].selling_price %>",
+          unit: "<%= stock_products[i].unit %>",
+        }
+      );
+    <% } %>
+  </script>
+  <script src="../../js/script-edit-sales.js"></script>
+  </body>
+</html>

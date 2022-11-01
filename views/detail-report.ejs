@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="../../../../css/report/report.css" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title><%= title %></title>
+  </head>
+  <body>
+    <div class="container-main">
+      <!-- Nav -->
+      <div class="container-left">
+        <ul class="nav flex-column ul-full">
+          <li class="nav-item title">
+            <div class="nav-link alfas-badge">
+              <h2>Toko ALFAS</h2>
+            </div>
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../../../../icons/dashboard_ic.svg" alt="dahboard icon" />
+            <a class="nav-link nav-dashboard nav-link-active nav-hover" href="/dashboard"
+              >Dashboard</a
+            >
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../../../../icons/transaction_ic.svg" alt="transaction icon" />
+            <a
+              class="nav-link nav-today-sales nav-link-active nav-hover"
+              href="/today-sales"
+              >Penjualan Hari Ini</a
+            >
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../../../../icons/history-transaction_ic.svg" alt="history icon" />
+            <a class="nav-link nav-history-sales nav-link-active nav-hover" href="/history-sales"
+              >Riwayat Penjualan</a
+            >
+          </li>
+          <!-- <li class="nav-item nav-flex">
+            <img src="../../../../icons/stock_ic.svg" alt="stock icon" />
+            <a class="nav-link nav-products nav-link-active nav-hover" href="/products">Produk</a>
+          </li> -->
+          <li class="nav-item nav-flex">
+            <img src="../../../../icons/item-unit_ic.svg" alt="unit icon" />
+            <a class="nav-link nav-units nav-link-active nav-hover" href="/units">Satuan Barang</a>
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../../../../icons/supplier_ic.svg" alt="supplier icon" />
+            <a class="nav-link nav-suppliers nav-link-active nav-hover" href="/suppliers">Suppliers</a>
+          </li>
+            <li class="nav-item nav-flex">
+                <img
+                  src="../../../../icons/stock-products_ic.svg"
+                  alt="stock products icon"
+                />
+                <a class="nav-link nav-link-active nav-hover" href="/stock-products"
+                  >Stok Barang</a
+                >
+            </li>
+            <li class="nav-item nav-flex">
+              <img src="../../../../icons/customer-debt_ic.svg" alt="debt icon" />
+              <a class="nav-link nav-link-active nav-hover" href="/customers-debt">Pelanggan Yang Berutang</a>
+            </li>
+          <li class="nav-item nav-flex">
+            <img src="../../../../icons/category_ic.svg" alt="category icon" />
+            <a class="nav-link nav-link-active nav-hover" href="/category">Kategori Barang</a>
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../../../../icons/report_ic.svg" alt="report icon" />
+            <a class="nav-link nav-report nav-hover" href="/report">Laporan Penjualan</a>
+          </li>
+          <li class="nav-item nav-flex abc">
+            <img src="../../../../icons/logout_ic.svg" alt="logout icon" />
+            <a class="nav-link logout" href="/logout">Keluar</a>
+          </li>
+        </ul>
+      </div>
+      <!-- End of Nav -->
+      <div class="container-right">
+        <div class="items">
+        <% if (idURL === tanggal_periode_per_hari) { %> 
+          <div class="title">
+            <h2>Detail Laporan Penjualan <%= periode_name %> Tanggal <%= tanggal_periode_per_hari %></h2>
+          </div>
+        <% } else if (idURL === id_date_report_per_minggu) { %>
+          <div class="title">
+            <h2>Detail Laporan Penjualan <%= periode_name %> Mulai Tanggal <%= tanggal_periode_per_minggu %></h2>
+          </div>
+        <% } else { %>
+          <div class="title">
+            <h2>Detail Laporan Penjualan <%= periode_name %> Mulai Tanggal <%= tanggal_periode_per_bulan %></h2>
+          </div>
+        <% } %>
+          <div class="three-element">
+            <div class="btn-action">
+              <input type="button" value="Simpan Laporan Penjualan" id="btPrint" class="btn bg-success text-white border-0" onclick="createPDF()" />
+              <a href="/report/lihat/<%= lihatId %>" class="btn bg-primary ms-1">Kembali</a>
+            </div>
+          </div>
+          <div id="container_table">
+
+            <table class="table text-center table-bordered border-dark" id="table_report">
+              <thead>
+                <tr>
+                  <th scope="col">Tanggal</th>
+                  <th scope="col">Nama Barang</th>
+                  <th scope="col">Kategori</th>
+                  <th scope="col">Jumlah Beli</th>
+                  <th scope="col">Modal</th>
+                  <th scope="col">Harga Satuan</th>
+                  <th scope="col">Laba</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <% for (let i = 0; i < report_per_hari.length; i++) { %>
+                    <% if (lihatId === report_per_hari[i].alt_id.toString()) { %>
+                      <tr>
+                        <td scope="row"><%= report_per_hari[i].date %></td>
+                        <td><%= report_per_hari[i].product_name %></td>
+                        <td><%= report_per_hari[i].category %></td>
+                        <td><%= report_per_hari[i].qty %></td>
+                        <td>Rp. <%= report_per_hari[i].harga_pokok %></td>
+                        <td>Rp. <%= report_per_hari[i].selling_price %></td>
+                        <td>Rp. <%= report_per_hari[i].profit %></td>
+                      </tr>
+
+                      <% if (i === length_reprot_per_hari) { %>
+                            <tr>
+                              <td colspan="4" class="fw-bolder">Total</td>
+                              <td class="fw-bolder">Rp. <%= totalModalPerHari %></td>
+                              <td class="fw-bolder">Rp. <%= totalHargaSatuanPerHari %></td>
+                              <td class="fw-bolder">Rp. <%= totalProfitPerHari %></td>
+                            </tr>
+                          <% } %>
+                    <% } %>
+                  <% } %>
+                    
+                  <% for (let j = 0; j < detail_report_per_minggu.length; j++) { %>
+                        <% if (idURL === detail_report_per_minggu[j].alt_id2.toString()) { %>
+                          <tr>
+                            <td><%= detail_report_per_minggu[j].date %></td>
+                            <td><%= detail_report_per_minggu[j].product_name %></td>
+                            <td><%= detail_report_per_minggu[j].category %></td>
+                            <td><%= detail_report_per_minggu[j].qty %></td>
+                            <td>Rp. <%= detail_report_per_minggu[j].harga_pokok %></td>
+                            <td>Rp. <%= detail_report_per_minggu[j].selling_price %></td>
+                            <td>Rp. <%= detail_report_per_minggu[j].profit %></td>
+                          </tr>
+                          <% if (j === length_reprot_per_minggu) { %>
+                            <tr>
+                              <td colspan="4" class="fw-bolder">Total</td>
+                              <td class="fw-bolder">Rp. <%= totalModalPerMinggu %></td>
+                              <td class="fw-bolder">Rp. <%= totalHargaSatuanPerMinggu %></td>
+                              <td class="fw-bolder">Rp. <%= totalProfitPerMinggu %></td>
+                            </tr>
+                          <% } %>
+                        <% } %>
+                  <% } %>
+
+                  <% for (let k = 0; k < detail_report_per_bulan.length; k++) { %>
+                        <% if (idURL === detail_report_per_bulan[k].alt_id2.toString()) { %>
+                          <tr>
+                            <td><%= detail_report_per_bulan[k].date %></td>
+                            <td><%= detail_report_per_bulan[k].product_name %></td>
+                            <td><%= detail_report_per_bulan[k].category %></td>
+                            <td><%= detail_report_per_bulan[k].qty %></td>
+                            <td>Rp. <%= detail_report_per_bulan[k].harga_pokok %></td>
+                            <td>Rp. <%= detail_report_per_bulan[k].selling_price %></td>
+                            <td>Rp. <%= detail_report_per_bulan[k].profit %></td>
+                          </tr>
+
+                          <% if (k === length_reprot_per_bulan) { %>
+                            <tr>
+                              <td colspan="4" class="fw-bolder">Total</td>
+                              <td class="fw-bolder">Rp. <%= totalModalPerBulan %></td>
+                              <td class="fw-bolder">Rp. <%= totalHargaSatuanPerBulan %></td>
+                              <td class="fw-bolder">Rp. <%= totalProfitPerBulan %></td>
+                            </tr>
+                          <% } %>
+                        <% } %>
+                  <% } %>
+
+                  <% for (let l = 0; l < detail_report_per_tahun.length; l++) { %>
+                    <% if (idURL === detail_report_per_tahun[l].alt_id2.toString()) { %>
+                      <tr>
+                        <td><%= detail_report_per_tahun[l].date %></td>
+                        <td><%= detail_report_per_tahun[l].product_name %></td>
+                        <td><%= detail_report_per_tahun[l].category %></td>
+                        <td><%= detail_report_per_tahun[l].qty %></td>
+                        <td>Rp. <%= detail_report_per_tahun[l].harga_pokok %></td>
+                        <td>Rp. <%= detail_report_per_tahun[l].selling_price %></td>
+                        <td>Rp. <%= detail_report_per_tahun[l].profit %></td>
+                      </tr>
+                      <% if (l === length_reprot_per_tahun) { %>
+                            <tr>
+                              <td colspan="4" class="fw-bolder">Total</td>
+                              <td class="fw-bolder">Rp. <%= totalModalPerTahun %></td>
+                              <td class="fw-bolder">Rp. <%= totalHargaSatuanPerTahun %></td>
+                              <td class="fw-bolder">Rp. <%= totalProfitPerTahun %></td>
+                            </tr>
+                          <% } %>
+                    <% } %>
+                  <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let periode = document.querySelector('.container-right .items .title').innerText;
+
+      function createPDF() {
+          let sTable = document.getElementById('container_table').innerHTML;
+          let namaToko = `<h1 style="text-align: center; font-family: 'Montserrat', sans-serif;">Toko ALFAS Makassar</h1>`;
+          let alamatToko = `<h2 style="text-align: center; margin: -15px; font-size: 18px; font-family: 'Montserrat', sans-serif;">Jl. Muh. Tahir No.95 Makassar, Telp 082187809989</h2>`;
+          let iconToko = `<img src="../../../../icons/store_ic.svg" alt="icon toko" style="position: absolute; top: 5px; left: 20px;">`
+          let titleReport = `<p style="margin-top: 80px; font-family: 'Montserrat', sans-serif;">${periode}</p>`;
+
+          let style = "<style>";
+          style = style + "table {width: 100%;font: .9em Montserrat;}";
+          style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+          style = style + "padding: 2px 3px;text-align: center;}";
+          style = style + "</style>";
+
+          // CREATE A WINDOW OBJECT.
+          let win = window.open('', '', 'height=700,width=1000');
+
+          win.document.write('<html><head>');
+          win.document.write('<title>Laporan Penjualan</title>');   // <title> FOR PDF HEADER.
+          win.document.write(style);    // ADD STYLE INSIDE THE HEAD TAG.
+          win.document.write('</head>');
+          win.document.write('<body>');
+          win.document.write(namaToko);
+          win.document.write(alamatToko);
+          win.document.write(iconToko);
+          win.document.write(titleReport);
+          win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+          win.document.write('</body></html>');
+
+          win.document.close();   // CLOSE THE CURRENT WINDOW.
+
+          win.print();    // PRINT THE CONTENTS.
+      }
+    </script>
+  </body>
+</html>

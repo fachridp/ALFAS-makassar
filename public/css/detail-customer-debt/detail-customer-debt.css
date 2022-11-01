@@ -1,0 +1,172 @@
+body {
+  font-family: "Montserrat", sans-serif !important;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container-main {
+  display: grid;
+  grid-template-columns: repeat(2, 250px auto);
+}
+
+.container-main .container-left {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #000;
+}
+
+.container-main .container-left .ul-full {
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.container-main .container-left ul li.title {
+  position: relative;
+}
+
+.container-main .container-left ul li.title .alfas-badge {
+  padding-left: 1.5rem;
+  border-bottom: 0.1rem solid #ffd700;
+}
+
+.container-main .container-left ul li.title .charts-fill img {
+  width: 20px;
+  position: absolute;
+  right: 12px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.container-main .container-left ul li.title h2 {
+  font-size: 1em;
+  color: #000;
+  padding: 0.7rem 2.5rem 0.7rem 2.5rem;
+  background-color: #ffd700;
+  display: inline-block;
+  border-radius: 0.25rem;
+}
+
+.container-main .container-left ul li.nav-flex {
+  padding-left: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.container-main .container-left ul li.nav-flex img {
+  width: 20px;
+}
+
+.container-main .container-left ul li.nav-flex a {
+  font-weight: 300 !important;
+  color: #fff;
+  transition: 0.1s ease-out;
+}
+
+.container-main .container-left ul li.nav-flex .nav-hover:hover {
+  font-weight: 600 !important;
+  color: #0085ff;
+}
+
+.container-main .container-left ul li.nav-flex .nav-customer-debt {
+  font-weight: 600 !important;
+  color: #0085ff;
+}
+
+.container-main .container-left ul li.nav-flex .active {
+  font-weight: 600 !important;
+  color: #0085ff;
+}
+
+.container-main .container-left ul li.abc a {
+  font-weight: 600 !important;
+  color: #ff0000;
+}
+
+.container-main .container-right {
+  width: 1120px;
+  padding: 0;
+  position: relative;
+}
+
+.container-main .container-right .items {
+  margin: 1rem;
+}
+
+.container-main .container-right .items .title {
+  border-bottom: 0.1rem solid #ffd700;
+}
+
+.container-main .container-right .items .title h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.container-main .container-right .items .three-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem; 
+}
+
+.container-main .container-right .items .three-element .btn-action a {
+  background-color: #0085FF;
+  color: #FFF;
+  padding: .2rem 2rem;
+  margin: 1.2rem 1rem 1.2rem 0;
+  transition: .1s ease-out;
+}
+
+.container-main .container-right .items .three-element .btn-action a:nth-child(1) {
+  background-color: #FF0000;
+  color: #FFF;
+  padding: .2rem 2rem;
+  margin: 1.2rem 1rem 1.2rem 0;
+  transition: .1s ease-out;
+}
+
+.container-main .container-right .items .three-element .btn-action a:hover {
+  opacity: .7;
+}
+.container-main .container-right .items table {
+  margin-top: 2rem;
+}
+
+.container-main .container-right .items table a {
+  transition: .1s ease-out;
+}
+
+.container-main .container-right .items table a:hover,
+.container-main .container-right .items table form button:hover
+{
+  opacity: .7;
+}
+
+.container-main .container-right .items table a.btn:nth-child(1) {
+  margin: 0 .5rem 0 0;
+  background-color: #0085FF;
+  padding: .2rem .5rem;
+  color: #FFF;
+}
+
+.container-main .container-right .items table a.btn:nth-child(2) {
+  margin: 0 .5rem 0 0;
+  padding: .2rem .5rem;
+  color: #FFF;
+}
+
+.container-main .container-right .items table form {
+  display: inline-block;
+}
+
+.container-main .container-right .items table form button {
+  color: #FFF;
+  background-color: #FF0000;
+  padding: .2rem .5rem;
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="css/products/products.css" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title><%= title %></title>
+  </head>
+  <body>
+    <div class="container-main">
+      <!-- Nav -->
+      <div class="container-left">
+        <ul class="nav flex-column ul-full">
+          <li class="nav-item title">
+            <div class="nav-link alfas-badge">
+              <h2>Toko ALFAS</h2>
+            </div>
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../icons/dashboard_ic.svg" alt="dahboard icon" />
+            <a class="nav-link nav-dashboard nav-link-active nav-hover" href="/dashboard"
+              >Dashboard</a
+            >
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../icons/transaction_ic.svg" alt="transaction icon" />
+            <a
+              class="nav-link nav-today-sales nav-link-active nav-hover"
+              href="/today-sales"
+              >Penjualan Hari Ini</a
+            >
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../icons/history-transaction_ic.svg" alt="history icon" />
+            <a class="nav-link nav-history-sales nav-link-active nav-hover" href="/history-sales"
+              >Riwayat Penjualan</a
+            >
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../icons/stock_ic.svg" alt="stock icon" />
+            <a class="nav-link nav-products nav-link-active nav-hover" href="/products">Produk</a>
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../icons/item-unit_ic.svg" alt="unit icon" />
+            <a class="nav-link nav-units nav-link-active nav-hover" href="/units">Units</a>
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../icons/supplier_ic.svg" alt="supplier icon" />
+            <a class="nav-link nav-suppliers nav-link-active nav-hover" href="/suppliers">Suppliers</a>
+          </li>
+            <li class="nav-item nav-flex">
+                <img
+                  src="../icons/stock-products_ic.svg"
+                  alt="stock products icon"
+                />
+                <a class="nav-link nav-stock-products nav-link-active nav-hover" href="/stock-products"
+                  >Stok Barang</a
+                >
+            </li>
+            <li class="nav-item nav-flex">
+              <img src="../icons/customer-debt_ic.svg" alt="debt icon" />
+              <a class="nav-link nav-link-active nav-hover" href="/customers-debt">Pelanggan Yang Berutang</a>
+            </li>
+          <li class="nav-item nav-flex">
+            <img src="../icons/category_ic.svg" alt="category icon" />
+            <a class="nav-link nav-link-active nav-hover" href="/category">Kategori Barang</a>
+          </li>
+          <li class="nav-item nav-flex">
+            <img src="../icons/report_ic.svg" alt="report icon" />
+            <a class="nav-link report nav-hover" href="/report">Laporan</a>
+          </li>
+          <li class="nav-item nav-flex abc">
+            <img src="../icons/logout_ic.svg" alt="logout icon" />
+            <a class="nav-link logout" href="/logout">Keluar</a>
+          </li>
+        </ul>
+      </div>
+      <!-- End of Nav -->
+      <div class="container-right">
+        <div class="items">
+            <div class="title">
+                <h2>Produk</h2>
+            </div>
+            <div class="three-element">
+                <div class="btn-action">
+                    <a href="/products/add-products" class="btn">Tambah Produk Baru</a>
+                </div>
+            </div>
+            <!-- cek variabel msg jika tidak ada isinya -->
+            <% if (msg.length !== 0) { %>
+              <div class="alert alert-success d-block mt-3" role="alert">
+                    <p id="check"> <%= msg %> </p>
+              </div>
+            <% } %>
+            <table class="table text-center">
+                <thead>
+                            <tr>
+                              <th scope="col">No</th>
+                              <th scope="col">Nama Produk</th>
+                              <th scope="col">Aksi</th>
+                            </tr>
+                </thead>
+                <tbody>
+                <% products.forEach((product, i) => { %>
+                  <tr class="align-middle">
+                    <th scope="row"><%= i+1 %></th>
+                    <td><%- product.product_name %></td>
+                    <td>
+                      <a href="/products/edit/<%= product.product_name %>" class="btn">Ubah</a>
+                      <form action="/products?_method=DELETE" method="POST">
+                        <input
+                          type="hidden"
+                          name="_id" value="<%= product._id %>"/>
+                        <button
+                          type="submit"
+                          class="btn"
+                          onclick="return confirm('Yakin?');"
+                        >
+                          <i class="bi bi-trash-fill"></i>
+                          Hapus
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }) %>
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

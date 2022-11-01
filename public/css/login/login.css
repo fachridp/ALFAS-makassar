@@ -1,0 +1,121 @@
+body {
+	background-color: #303641 !important;
+	position: relative;
+	font-family: 'Montserrat', sans-serif !important;
+}
+
+.container {
+	background-color: yellow;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, 30%);
+}
+
+.container-center {
+	width: 400px !important;
+	height: 380px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #1D1F20;
+}
+
+.container-center .title {
+	width: inherit;
+	height: 90px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #1A1C1D;
+	box-sizing: border-box;
+}
+
+.container-center .title img {
+	width: 25px;
+	margin: 0 .6rem;
+}
+
+.container-center form {
+	width: 90%;
+	height: 100%;
+	margin: 2rem 0 0 0;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.container-center form img.username_ic {
+	width: 27px;
+	padding-right: 5px;
+	position: absolute;
+	top: 7px;
+	left: 65px;
+	border-right: 1px solid  #949494;
+}
+
+.container-center form img.password_ic {
+	width: 27px;
+	padding-right: 5px;
+	position: absolute;
+	top: 66px;
+	left: 65px;
+	border-right: 1px solid #949494;
+}
+
+.container-center form::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	left: 0;
+	bottom:65px;
+	background-color: #373B3D;
+}
+
+.container-center form input {
+	width: 222px;
+	color: #C1C3C6;
+	background-color: #373B3D;
+	border: none;
+	padding-left: 2.5rem;
+}
+
+.container-center form input[type=password] {
+	margin-top: .5rem;
+}
+
+.container-center form input:focus {
+	color: #C1C3C6;
+	background-color: #373B3D;
+}
+
+.container-center form input::placeholder {
+	font-size: .9em;
+	letter-spacing: .04rem;
+	color: #949494;
+}
+
+
+.container-center form button {	
+	font-weight: 500;
+	background-color: #303641;
+	color: #C1C3C6;
+	transition: .1s ease-out;
+	border: none;
+}
+
+.container-center form button:hover {	
+	font-weight: 500;
+	background-color: #C1C3C6;
+	color: #303641;
+}
+
+.container-center .mssg {
+	color: #C1C3C6;
+	font-weight: 500;
+	position: absolute !important;
+	background-color: #303641;
+	bottom: 68px;
+}

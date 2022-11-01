@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="css/dashboard/dashboard.css">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+     <script type = "text/javascript" language = "javascript">
+        $(document).ready(function() {
+            $(".nav-link-active").on("click", function() {
+                $('.nav-link-active').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    </script>
+
+	<title><%= title %></title>
+</head>
+<body>
+    <div class="container-main">
+        <div class="container-left">
+            <ul class="nav flex-column ul-full">
+                <li class="nav-item title">
+                    <div class="nav-link alfas-badge">
+                        <h2> ALFAS Shop </h2>
+                    </div>
+                </li>
+                <li class="nav-item nav-flex">
+                    <img src="../icons/dashboard_ic.svg" alt="dahboard icon">
+                    <a class="nav-link nav-dashboard nav-link-active nav-hover" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item nav-flex">
+                    <img src="../icons/transaction_ic.svg" alt="transaction icon">
+                    <a class="nav-link nav-link-active nav-hover" href="/today-sales">Today Sales</a>
+                </li>
+                <li class="nav-item nav-flex">
+                 <img src="../icons/history-transaction_ic.svg" alt="history icon">
+                    <a class="nav-link nav-link-active nav-hover" href="/history-sales">History Sales</a>
+                </li>
+                <li class="nav-item nav-flex">
+                 <img src="../icons/stock_ic.svg" alt="stock icon">
+                    <a class="nav-link nav-link-active nav-hover" href="/products">Products</a>
+                </li>
+                <li class="nav-item nav-flex">
+                 <img src="../icons/supplier_ic.svg" alt="supplier icon">
+                    <a class="nav-link nav-link-active nav-hover" href="/suppliers">Suppliers</a>
+                </li>
+                <li class="nav-item nav-flex">
+                 <img src="../icons/stock-products_ic.svg" alt="stock products icon">
+                    <a class="nav-link nav-link-active nav-hover" href="/stock-products">Stock Products</a>
+                </li>
+                <li class="nav-item nav-flex">
+                 <img src="../icons/customer-debt_ic.svg" alt="customer debt icon">
+                    <a class="nav-link nav-link-active nav-hover" href="/customer-debt">Customer Debt</a>
+                </li>
+                <li class="nav-item nav-flex">
+                 <img src="../icons/category_ic.svg" alt="category icon">
+                    <a class="nav-link nav-link-active nav-hover" href="/category">Category</a>
+                </li>
+                <li class="nav-item nav-flex abc">
+                    <img src="../icons/logout_ic.svg" alt="logout icon">
+                    <a class="nav-link logout" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <div class="container-right">
+            <div class="items">
+                <div class="title">
+                    <h2>Dashboard</div>
+                </div>
+                <div class="recap">
+                    <div class="card shadow-sm card-flex" style="width: 16rem;">
+                        <img class="total-products_ic" src="../icons/total-products_ic.svg" alt="total products icon">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Total Products</h5>
+                            <p class="card-text">210</p>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm card-flex" style="width: 16rem;">
+                        <img class="stock-low_ic" src="../icons/stock-is-low_ic.svg" alt="stock low icon">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Stock is Low</h5>
+                            <p class="card-text">7</p>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm card-flex" style="width: 16rem;">
+                        <img class="out-stock_ic" src="../icons/warning_ic.svg" alt="out of stock icon">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Out of Stock</h5>
+                            <p class="card-text">13</p>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm card-flex" style="width: 16rem;">
+                        <img class="turnover_ic" src="../icons/turnover_ic.svg" alt="turnover icon">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Today Turnover</h5>
+                            <p class="card-text">Rp.1.145.000</p>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm card-flex" style="width: 16rem;">
+                        <img class="profit_ic" src="../icons/profit_ic.svg" alt="profit icon">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Today Profit</h5>
+                            <p class="card-text">Rp.114.500</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="best-seller">
+                    <div class="title">
+                        <h2>Products Best Seller</h2>
+                    </div>
+                    <div class="period">
+                        <label for="start">Period :</label>
+                        <input type="month" id="start" name="start" min="2022-01" value="2022-01">
+                        <button type="submit" class="mt-2 rounded-1 py-1 px-3">Search</button>
+                    </div>
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                              <th scope="col">No</th>
+                              <th scope="col">Product</th>
+                              <th scope="col">Category</th>
+                              <th scope="col">Selling Qty</th>
+                              <th scope="col">Unit</th>
+                              <th scope="col">Selling Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>Surya Besar</td>
+                              <td>Rokok</td>
+                              <td>30</td>
+                              <td>Bungkus</td>
+                              <td>Rp. 28.000</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>Tiga Mawar</td>
+                              <td>Beras</td>
+                              <td>29</td>
+                              <td>Liter</td>
+                              <td>Rp. 10.000</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>Taro</td>
+                              <td>Makanan Ringan</td>
+                              <td>15</td>
+                              <td>Pcs</td>
+                              <td>Rp. 1.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+body {
+    font-family: 'Montserrat', sans-serif !important;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.container-main {
+    display: grid;
+    grid-template-columns: repeat(2, 250px 1fr);
+}
+
+.container-main .container-left {
+    background-color: #000;
+    height: 100vh;
+}
+
+.container-main .container-left .ul-full{
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container-main .container-left ul li.title {
+    position: relative;
+}
+
+.container-main .container-left ul li.title .alfas-badge {
+    padding-left: 1.5rem;
+    border-bottom: .1rem solid #FFD700;
+}
+
+.container-main .container-left ul li.title .charts-fill img {
+    width: 20px;
+    position: absolute;
+    right: 12px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.container-main .container-left ul li.title h2 {
+    font-size: 1em;
+    color: #000;
+    padding: .7rem 2.5rem .7rem 2.5rem;
+    background-color: #FFD700;
+    display: inline-block;
+    border-radius: .25rem;
+}
+
+.container-main .container-left ul li.nav-flex {
+    padding-left: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.container-main .container-left ul li.nav-flex img {
+    width: 20px;
+}
+
+.container-main .container-left ul li.nav-flex a {
+    font-weight: 300 !important;
+    color: #FFF;
+    transition: .1s ease-out;
+}
+
+.container-main .container-left ul li.nav-flex .nav-hover:hover {
+    font-weight: 600 !important;
+    color: #0085FF;
+}
+
+.container-main .container-left ul li.nav-flex .nav-dashboard {
+    font-weight: 600 !important;
+    color: #0085FF;
+}
+
+.container-main .container-left ul li.nav-flex .active {
+    font-weight: 600 !important;
+    color: #0085FF;
+}
+
+.container-main .container-left ul li.abc a {
+    font-weight: 600 !important;
+    color: #FF0000;
+}
+
+.container-main .container-right {
+    width: 1120px;
+    padding: 0;
+    position: relative;
+}
+
+.container-main .container-right .items .title {
+    border-bottom: .1rem solid #FFD700;
+    margin: 1rem;
+}
+
+.container-main .container-right .items .title h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.container-main .container-right .recap {
+    margin: 1.2rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.container-main .container-right .recap .card-flex {
+    height: 105px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-main .container-right .recap .card-flex .card-body {
+    padding: 0;
+}
+
+.container-main .container-right .recap .card-flex .card-body h5 {
+    font-weight: 600;
+    color: #0085FF;
+}
+
+.container-main .container-right .recap .card-flex .card-body p {
+    font-weight: 600 !important;
+    letter-spacing: .04rem;
+}
+
+.container-main .container-right .recap .card-flex img.total-products_ic {
+    width: 55px;
+}
+
+.container-main .container-right .recap .card-flex img.stock-low_ic {
+    width: 48px;
+}
+
+.container-main .container-right .recap .card-flex img.out-stock_ic {
+    width: 16px;
+}
+
+.container-main .container-right .recap .card-flex img.turnover_ic {
+    width: 40px;
+}
+
+.container-main .container-right .recap .card-flex img.profit_ic {
+    width: 55px;
+    align-self: center;
+}
+
+.container-main .container-right .best-seller {
+    margin: 1.2rem 1rem;
+}
+
+.container-main .container-right .best-seller .title {
+    margin-top: 1rem;
+    border-bottom: .1rem solid #FFD700;
+}
+
+.container-main .container-right .best-seller .title h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.container-main .container-right .best-seller .period {
+    margin-top: 1rem;
+}
+
+.container-main .container-right .best-seller .period input {
+    padding-left: .5rem;
+}
+
+.container-main .container-right .best-seller .period button {  
+    font-weight: 500;
+    background-color: #0085FF;
+    color: #FFF;
+    transition: .1s ease-out;
+    border: none;
+}
+
+.container-main .container-right .best-seller .period button:hover{ 
+    font-weight: 500;
+    background-color: #C1C3C6;
+    color: #0085FF;
+}
+
+.container-main .container-right .best-seller table {   
+    margin-top: 1rem;
+}
+
+.container-main .container-right footer {
+    height: 40px;
+    color: #FFF;
+    background-color: #000;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container-main .container-right footer p {
+    font-size: 1em;
+    margin: 0;
+    align-self: center;
+}

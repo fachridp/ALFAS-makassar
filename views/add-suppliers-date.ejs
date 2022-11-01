@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="css/add-products/add-products.css" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title><%= title %></title>
+  </head>
+  <body>
+    <div class="container mt-3 mb-3">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Tambah Tanggal Pemesanan / Pembelian pada <%= supplier_name %></h2>
+          <form method="post" action="/suppliers/lihat/<%= idURL %>" class="mt-3" autocomplete="off">
+            <div class="mb-3">
+              <label for="date" class="form-label">Tanggal Pemesanan / Pembelian :</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                name="date"
+                autofocus
+                required
+              />
+            </div>
+            <a href="/suppliers/lihat/<%= idURL %>" class="btn btn-danger">Batal</a>
+            <button type="submit" class="btn btn-success">Tambah</button>
+          </form>
+        </div> 
+      </div>
+    </div>
+  </body>
+</html>
