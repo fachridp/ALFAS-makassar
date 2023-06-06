@@ -1,3 +1,3 @@
 # alfas-makassar
 
-Untuk Tugas Akhir Skripsi S1 Teknik Informatika.
+Aplikasi untuk Tugas Akhir Skripsi S1 Teknik Informatika di Universitas Muslim Indonesia.
